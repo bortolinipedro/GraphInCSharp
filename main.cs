@@ -8,12 +8,12 @@ namespace GraphApplication
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter the number of vertices: ");
+            Console.Write("Insira o número de vértices: ");
             int numVertices;
             while (!int.TryParse(Console.ReadLine(), out numVertices) || numVertices <= 0)
             {
-                Console.WriteLine("Please enter a valid positive integer for the number of vertices.");
-                Console.Write("Enter the number of vertices: ");
+                Console.WriteLine("Por favor, insira um número inteiro positivo válido para o número de vértices.");
+                Console.Write("Insira o número de vértices: ");
             }
             
             var graph = new Graph(numVertices);
@@ -22,20 +22,22 @@ namespace GraphApplication
             var defaultWeight = 1;
             for (int i = 0; i < numVertices; i++)
             {
-                var vertex = new Vertex(i + 1, ((char)('A' + i)).ToString(), defaultWeight);
+                var value = ((char)('A' + i)).ToString();
+                var vertex = new Vertex(i + 1, value, defaultWeight, value);
                 graph.AddVertex(vertex);
                 vertices[i] = vertex;
             }
 
             while (true)
             {
-                Console.WriteLine("\nWould you like to: ");
-                Console.WriteLine("\n (1) Add edge?");
-                Console.WriteLine("\n (2) Remove edge?");
-                Console.WriteLine("\n (3) Add vertex label?");
-                Console.WriteLine("\n (4) Add vertex weight?");
-                Console.WriteLine("\n (5) Add edge label?");
-                Console.WriteLine("\n (6) Add edge weight?");
+                Console.WriteLine("\nVocê gostaria de:");
+                Console.WriteLine("\n (1) Adicionar uma aresta?");
+                Console.WriteLine("\n (2) Remover uma aresta?");
+                Console.WriteLine("\n (3) Adicionar um rótulo ao vértice?");
+                Console.WriteLine("\n (4) Adicionar peso ao vértice?");
+                Console.WriteLine("\n (5) Adicionar rótulo à aresta?");
+                Console.WriteLine("\n (6) Adicionar peso à aresta?");
+                Console.WriteLine("\n");
                 string action = Console.ReadLine();
 
                 switch (action)
@@ -59,7 +61,7 @@ namespace GraphApplication
                         AddEdgeWeight(graph);
                         break;
                     default:
-                        // Do nothing
+                        // Não fazer nada
                         break;
                 }
 
@@ -68,16 +70,15 @@ namespace GraphApplication
             }
         }
 
-
         static void AddEdge(Graph graph)
         {
-            Console.Write("Enter source vertex ID: ");
+            Console.Write("Insira o ID do vértice de origem: ");
             int sourceId = int.Parse(Console.ReadLine());
 
-            Console.Write("Enter target vertex ID: ");
+            Console.Write("Insira o ID do vértice de destino: ");
             int targetId = int.Parse(Console.ReadLine());
 
-            Console.Write("Enter weight: ");
+            Console.Write("Insira o peso: ");
             int weight = int.Parse(Console.ReadLine());
 
             graph.Connect(sourceId, targetId, weight);
@@ -85,10 +86,10 @@ namespace GraphApplication
 
         static void RemoveEdge(Graph graph)
         {
-            Console.Write("Enter source vertex ID: ");
+            Console.Write("Insira o ID do vértice de origem: ");
             int sourceId = int.Parse(Console.ReadLine());
 
-            Console.Write("Enter target vertex ID: ");
+            Console.Write("Insira o ID do vértice de destino: ");
             int targetId = int.Parse(Console.ReadLine());
 
             graph.Disconnect(sourceId, targetId);
@@ -96,48 +97,48 @@ namespace GraphApplication
 
         static void AddVertexLabel(Graph graph)
         {
-            Console.Write("Enter vertex ID: ");
+            Console.Write("Insira o ID do vértice: ");
             int vertexId = int.Parse(Console.ReadLine());
             var vertex = graph.GetVertexById(vertexId);
 
             if (vertex != null)
             {
-                Console.Write("Enter vertex label: ");
+                Console.Write("Insira o rótulo do vértice: ");
                 string label = Console.ReadLine();
 
                 vertex.SetLabel(label);
             }
             else
             {
-                Console.WriteLine("Vertex not found.");
+                Console.WriteLine("Vértice não encontrado.");
             }
         }
 
         static void AddVertexWeight(Graph graph)
         {
-            Console.Write("Enter vertex ID: ");
+            Console.Write("Insira o ID do vértice: ");
             int vertexId = int.Parse(Console.ReadLine());
             var vertex = graph.GetVertexById(vertexId);
 
             if (vertex != null)
             {
-                Console.Write("Enter vertex weight: ");
+                Console.Write("Insira o peso do vértice: ");
                 int weight = int.Parse(Console.ReadLine());
 
                 vertex.SetWeight(weight);
             }
             else
             {
-                Console.WriteLine("Vertex not found.");
+                Console.WriteLine("Vértice não encontrado.");
             }
         }
 
         static void AddEdgeLabel(Graph graph)
         {
-            Console.Write("Enter source vertex ID: ");
+            Console.Write("Insira o ID do vértice de origem: ");
             int sourceVertexId = int.Parse(Console.ReadLine());
 
-            Console.Write("Enter target vertex ID: ");
+            Console.Write("Insira o ID do vértice de destino: ");
             int targetVertexId = int.Parse(Console.ReadLine());
 
             var edgeIdentifier = sourceVertexId + "_" + targetVertexId;
@@ -145,23 +146,23 @@ namespace GraphApplication
 
             if (edge != null)
             {
-                Console.Write("Enter edge label: ");
+                Console.Write("Insira o rótulo da aresta: ");
                 string label = Console.ReadLine();
 
                 edge.SetLabel(label);
             }
             else
             {
-                Console.WriteLine("Edge not found.");
+                Console.WriteLine("Aresta não encontrada.");
             }
         }
 
         static void AddEdgeWeight(Graph graph)
         {
-            Console.Write("Enter source vertex ID: ");
+            Console.Write("Insira o ID do vértice de origem: ");
             int sourceVertexId = int.Parse(Console.ReadLine());
 
-            Console.Write("Enter target vertex ID: ");
+            Console.Write("Insira o ID do vértice de destino: ");
             int targetVertexId = int.Parse(Console.ReadLine());
 
             var edgeIdentifier = sourceVertexId + "_" + targetVertexId;
@@ -169,14 +170,14 @@ namespace GraphApplication
 
             if (edge != null)
             {
-                Console.Write("Enter edge weight: ");
+                Console.Write("Insira o peso da aresta: ");
                 int weight = int.Parse(Console.ReadLine());
 
                 edge.SetWeight(weight);
             }
             else
             {
-                Console.WriteLine("Edge not found.");
+                Console.WriteLine("Aresta não encontrada.");
             }
         }
     }

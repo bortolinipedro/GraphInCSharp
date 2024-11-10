@@ -7,7 +7,7 @@ namespace GraphModels.Models
         public int Weight { get; private set; }
         public string Label { get; private set; }
 
-        public Vertex(int id, object value, int weight, string label = "")
+        public Vertex(int id, object value, int weight, string label)
         {
             Id = id;
             Value = value;
