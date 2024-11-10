@@ -55,22 +55,37 @@ namespace GraphModels.Models
 
         public Vertex GetVertexById(int id)
         {
+            if (!VertexList.ContainsKey(id)) {
+                return null;
+            }
+
             return VertexList[id];
         }
 
-        public Edge GetVertexByIdentifier(string identifier)
+        public Edge GetEdgeByIdentifier(string identifier)
         {
+            if (!EdgeList.ContainsKey(identifier)) {
+                return null;
+            }
+
             return EdgeList[identifier];
         }
 
         public void PrintAdjacencyMatrix()
         {
             Console.WriteLine("Matriz de Adjacência:");
-            for (int i = 0; i < adjacencyMatrix.GetLength(0); i++)
+            for (int sourcePosition = 0; sourcePosition < adjacencyMatrix.GetLength(0); sourcePosition++)
             {
-                for (int j = 0; j < adjacencyMatrix.GetLength(1); j++)
+                for (int targetPosition = 0; targetPosition < adjacencyMatrix.GetLength(1); targetPosition++)
                 {
-                    Console.Write(adjacencyMatrix[i, j] + " ");
+                    var edgeIdentifier = (sourcePosition + 1) + "_" + (targetPosition + 1);
+                    var edge = this.GetEdgeByIdentifier(edgeIdentifier);
+                    
+                    if (edge != null) {
+                        Console.Write("{" + edge.GetLabel() + " - " + edge.GetWeight() + "}" + " ");
+                    } else {
+                        Console.Write(adjacencyMatrix[sourcePosition, targetPosition] + " ");
+                    }
                 }
                 Console.WriteLine();
             }
@@ -82,7 +97,12 @@ namespace GraphModels.Models
             foreach (var vertexAdjacency in adjacencyList)
             {
                 var vertex = this.GetVertexById(vertexAdjacency.Key);
-                Console.Write("{" + vertex.GetLabel() + " - " + vertex.GetWeight() + "}" + ": ");
+                if (vertex != null) {
+                    Console.Write("{" + vertex.GetLabel() + " - " + vertex.GetWeight() + "}" + ": ");
+                } else {
+                    Console.Write("?" + " ");
+                }
+
                 foreach (var adjacentVertex in vertexAdjacency.Value)
                 {
                     Console.Write(adjacentVertex + " ");

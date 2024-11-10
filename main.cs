@@ -142,7 +142,7 @@ namespace GraphApplication
             int targetVertexId = int.Parse(Console.ReadLine());
 
             var edgeIdentifier = sourceVertexId + "_" + targetVertexId;
-            var edge = graph.GetVertexByIdentifier(edgeIdentifier);
+            var edge = graph.GetEdgeByIdentifier(edgeIdentifier);
 
             if (edge != null)
             {
@@ -166,7 +166,7 @@ namespace GraphApplication
             int targetVertexId = int.Parse(Console.ReadLine());
 
             var edgeIdentifier = sourceVertexId + "_" + targetVertexId;
-            var edge = graph.GetVertexByIdentifier(edgeIdentifier);
+            var edge = graph.GetEdgeByIdentifier(edgeIdentifier);
 
             if (edge != null)
             {
