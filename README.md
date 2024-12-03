@@ -1,5 +1,7 @@
 # **GraphInCSharp**
 
+Grupo: Julia Guerra, Pablo Las-Cazas, Pedro Bortolini.
+
 Este é um projeto em C# para manipulação e análise de grafos utilizando diferentes representações: matriz de adjacência e lista de adjacência.
 
 ## 1. Requisitos
